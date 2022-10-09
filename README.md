@@ -12,9 +12,10 @@
 - 로컬 개발환경 OS : window 10
 - 언어 / 버전 : java / 11
 - 프레임워크 : Spring boot 2.7.4
-- RDBMS : MariaDB 10.9.3
-- IN-MEMORY DB : Redis 7.0.5
+- RDBMS : MariaDB 10.9.3 (127.0.0.1:13306)
+- IN-MEMORY DB : Redis 7.0.5 (127.0.0.1:6379)
 - Swagger 2.0 적용
+- 서비스 포트 : 9802
 * * *
 ## 주요 사용 기술 스택 & 사용목적
 - **Spring AOP**
