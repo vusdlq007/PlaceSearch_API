@@ -19,8 +19,8 @@ public class SwaggerConfig {
 
     private ApiInfo swaggerInfo() {
         return new ApiInfoBuilder()
-                .title("Kakaopaysec-AccountManagement-API")
-                .description("Kakaopaysec-AccountManagement API Docs")
+                .title("PlaceSearch-API")
+                .description("PlaceSearch API Docs")
                 .version("0.0.1-dev")
                 .build();
     }
@@ -33,7 +33,7 @@ public class SwaggerConfig {
                 .host(url).pathMapping("/")
                 .apiInfo(swaggerInfo()).select()
                  // 해당 패키지 이하로 모두적용.
-                .apis(RequestHandlerSelectors.basePackage("com.kakaopaysec.accountmanagementapi"))
+                .apis(RequestHandlerSelectors.basePackage("com.api.placesearch"))
                 .paths(PathSelectors.any())
                 .build()
                 .useDefaultResponseMessages(false);
