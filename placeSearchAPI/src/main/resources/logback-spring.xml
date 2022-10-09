@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 300초마다 설정 파일의 변경을 확인 하여 변경시 갱신 -->
+<configuration scan="true" scanPeriod="300 seconds">
+    <!-- logback 이용시 사용하는 xml -->
+    <property scope="context" name="logHome" value="logs/AccountManagerApi" />
+<!--    <property name="logFileName">dashboard_api_log</property>-->
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%boldMagenta(%thread)] %highlight(%-5level) [%boldCyan(%logger{50}): %L] - %msg%n%throwable</pattern>
+        </encoder>
+    </appender>
+
+    <!-- fileAppender설정 -->
+    <appender name="DailyRollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logHome}/earn-point-api.log</file>
+        <!--        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+        <!--            <level>DEBUG</level>-->
+        <!--        </filter>-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logHome}/placeSearch-api-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <!--
+                maxHistory를 30일로 설정
+                30일이 지난 로그들은 삭제
+            -->
+            <maxHistory>1</maxHistory>
+            <totalSizeCap>300MB</totalSizeCap>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>250MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%logger{50}: %L] - %msg%n</pattern>
+        </encoder>
+        <encoder>
+            <charset>UTF-8</charset>
+            <!--
+                %d{yyyyMMdd HH:mm:ss.SSS} - 날짜
+                %thread - 어떤 스레드에서 실행한 것인지
+                %-5level - 로깅 레벨
+                %logger{35} - 어떤 클래스의 로거가 실행된 건지
+                %msg - 메세지
+                %n - 줄바꿈
+            -->
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS} %thread %-5level [%logger{50}: %L] - %m%n
+            </Pattern>
+        </encoder>
+    </appender>
+
+    <!-- 스프링 프레임워크에서 찍는건 level을 info로 설정 -->
+    <logger name="org.springframework" level="info" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="com.api.placesearch" level="debug" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+        <!--        <appender-ref ref="DailyRollingFileAppender" />-->
+    </root>
+
+</configuration>
