@@ -9,8 +9,11 @@ import com.api.placesearch.cmm.constant.ResponseCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -84,6 +87,11 @@ public class SearchPlaceServiceImpl implements SearchPlaceService {
 
     @Override
     public SearchResponseDTO searchPlace(String keyword, Integer disCnt, String sort) {
+        WebClient client = WebClient.builder()
+                .baseUrl("http://")
+                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .build();
+
         return null;
     }
 

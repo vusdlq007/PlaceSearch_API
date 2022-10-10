@@ -1,4 +1,4 @@
-package com.api.placesearch.swagger;
+package com.api.placesearch.config.swagger;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

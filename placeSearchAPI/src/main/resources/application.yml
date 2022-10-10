@@ -42,7 +42,17 @@ spring:
   sql:
     init:
       encoding: utf-8
-
+  redis:
+    lettuce:
+      pool:
+        max-active: 100          # pool에 할당될 수 있는 커넥션 최대수 (음수로 하면 무제한)
+        max-idle: 10             # pool의 "idle" 커넥션 최대수 (음수로 하면 무제한)
+        min-idle: 2              # pool에서 관리하는 idle 커넥션의 최소 수 대상 (양수일 때만 유효)
+        max-wait: -1             # pool이 바닥났을 때 예외발생 전에 커넥션 할당 차단의 최대 시간 (단위: 밀리세컨드, 음수는 무제한 차단)
+    port: 6379
+    host: localhost
+    password: 'okestro2018'
+    timeout: 500                 # 커넥션 타임아웃 (단위: 밀리세컨드)
 
 
 
