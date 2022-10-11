@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import javax.net.ssl.SSLException;
+
 @Slf4j
 @CrossOrigin("*")
 @Api(tags = {" 장소 검색 서비스 컨트롤러"})
@@ -47,15 +49,20 @@ public class SearchPlaceRestController {
                                                  name = "보여질 갯수",
                                                  type = "Integer",
                                                  example = "5")
-                                                 Integer disCnt,
+                                                 Integer size,
+                                         @ApiParam(
+                                                 name = "보여질 페이지 위치",
+                                                 type = "Integer",
+                                                 example = "5")
+                                                 Integer page,
                                          @ApiParam(
                                                  name = "정렬 기준 (sim,조회수순)",
                                                  type = "String",
-                                                 example = "sim")
+                                                 example = "accuracy")
                                                  String sort
-                                         ) {
+                                         ) throws SSLException {
 
-        return searchPlaceService.searchPlace(keyword,disCnt,sort);
+        return searchPlaceService.searchPlace(keyword, size, page, sort);
     }
 
     /**
@@ -69,7 +76,7 @@ public class SearchPlaceRestController {
             @ApiResponse(code = 200, message = "API 정상 응답"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @GetMapping("")
+    @GetMapping("/detail")
     public SearchResponseDTO searchPlaceDetail(SearchRequestDTO requestDTO) {
 
         return searchPlaceService.searchPlaceDetail(requestDTO);

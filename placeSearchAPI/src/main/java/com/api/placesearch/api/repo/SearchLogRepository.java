@@ -9,12 +9,12 @@ import java.util.Optional;
 
 public interface SearchLogRepository extends JpaRepository<SearchLog, String> {     // <Entity, 기본키 타입>
 
-    Optional<SearchLog> findById(Integer id);
+//    Optional<SearchLog> findById(Integer id);
 
-    List<SearchLog> findByName(String name);
+//    List<SearchLog> findByName(String name);
 
     //like검색
-    List<SearchLog> findByNameLike(String name);
+//    List<SearchLog> findByNameLike(String name);
 
 
 }
