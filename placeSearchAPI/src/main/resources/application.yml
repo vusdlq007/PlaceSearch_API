@@ -16,7 +16,7 @@ spring:
 #    activate:
 #      on-profile: local
   datasource:
-    url: jdbc:mariadb://localhost:3308/PLACESEARCH
+    url: jdbc:mariadb://localhost:13306/place_search
     username: root
     password: 1q2w3e4r1!
     driver-class-name: org.mariadb.jdbc.Driver
@@ -72,6 +72,11 @@ logging:
 # 커스텀 환경변수.
 custom:
   service:
+    kakao:
+      api-key: a3cfb116bed007eda61c61a173c842fa
+    naver:
+      client-id: sWG5r5IT_XLBfV7i6CQ1
+      client-secret: KVIa9A38qB
     timezone: Asia/Seoul
 
 # 스웨거 request 용 (http://localhost:9802/swagger-ui.html#)
