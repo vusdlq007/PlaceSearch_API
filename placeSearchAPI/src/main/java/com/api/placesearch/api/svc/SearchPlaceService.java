@@ -11,7 +11,7 @@ public interface SearchPlaceService {
 
     SearchResponseDTO searchPlace(String keyword, Integer size, Integer page, String sort) throws SSLException;
 
-    SearchResponseDTO searchPlaceDetail(SearchRequestDTO requestDTO);
+//    SearchResponseDTO searchPlaceDetail(SearchRequestDTO requestDTO);
 
 
 }

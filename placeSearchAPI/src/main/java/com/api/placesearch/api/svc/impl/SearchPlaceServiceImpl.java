@@ -19,6 +19,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
+import reactor.util.function.Tuple2;
 
 
 import javax.net.ssl.SSLException;
@@ -74,6 +76,7 @@ public class SearchPlaceServiceImpl implements SearchPlaceService {
         //Kakao API 호출.
         try {
             kakaoResult = searchApiUtils.callKaKaoSearchPlaceApi(keyword, size, page, sort);
+            kakaoResult.subscribeOn(Schedulers.boundedElastic());
         } catch (Exception e) {
             e.printStackTrace();
             log.error("ErrorCode:%n, ErrorMSG:%s",ResponseCode.KAKAO_PLACE_SEARCH_FAIL.getErrorCode(),ResponseCode.KAKAO_PLACE_SEARCH_FAIL.getMessage());
@@ -82,28 +85,26 @@ public class SearchPlaceServiceImpl implements SearchPlaceService {
         //Naver API 호출.
         try{
             naverResult = searchApiUtils.callNaverSearchPlaceApi(keyword, size, sort);
+            naverResult.subscribeOn(Schedulers.boundedElastic());
         }catch (Exception e){
             e.printStackTrace();
             log.error("ErrorCode:%n, ErrorMSG:%s",ResponseCode.NAVER_PLACE_SEARCH_FAIL.getErrorCode(),ResponseCode.NAVER_PLACE_SEARCH_FAIL.getMessage());
         }
-        kakaoResult.subscribe(result ->
-                        tmp2.set(result));
-        naverResult.subscribe(result -> tmp.set(result));
-        log.debug("## Y_TEST ["+tmp2.get().toString()+"]");
-        //
+
+        // 각 API 호출이 모두 완료되면 동기로 응답값 종합.
+       Tuple2<KaKaoSearchResponseDTO, NaverSearchResponseDTO> tuple2 = Mono.zip(kakaoResult,naverResult).block();
 
         //1. NaverSearchResponseDTO 초기화.
         //2. subscribe로 받는법.
         //3. 호출 결과 종합.
-        //4. DB에 로그 쌓는 AOP구현
+        //4. DB에 로그 쌓는 AOP구현 (로그 테이블 + 조회수 테이블)
         //5. Redis 연동 후 TOP 10 키워드 Redis에 1분에 한번씩 넣는 cronjob으로 넣고 요청은 읽어가도록 구현.
+
+
          return null;
     }
 
-    @Override
-    public SearchResponseDTO searchPlaceDetail(SearchRequestDTO requestDTO) {
-        return null;
-    }
+
 
 
 

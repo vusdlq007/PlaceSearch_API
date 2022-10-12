@@ -3,11 +3,10 @@ package com.api.placesearch.api.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.json.JSONObject;
+
 
 import java.util.LinkedHashMap;
 
-//@AllArgsConstructor
 @Data
 public class KaKaoSearchResponseDTO {
 

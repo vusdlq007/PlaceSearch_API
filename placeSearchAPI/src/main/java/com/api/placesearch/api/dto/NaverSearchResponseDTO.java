@@ -1,28 +1,62 @@
 package com.api.placesearch.api.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-//@AllArgsConstructor
+import java.util.Date;
+
 @Data
 public class NaverSearchResponseDTO {
 
-    @ApiModelProperty(value = "사용자 ID")
-    private Long userId;
+    @ApiModelProperty(value = "검색 일자/시간 정보")
+    private Date lastBuildDate;
 
-    @ApiModelProperty(value = "사용자명", required = true)
-    private String userName;
+    @ApiModelProperty(value = "총 검색 결과 수")
+    private Integer total;
 
-    @ApiModelProperty(value = "나이", required = true)
-    private Integer age;
+    @ApiModelProperty(value = "검색 페이지")
+    private Integer start;
 
-    public NaverSearchResponseDTO() { }
+    @ApiModelProperty(value = "한페이지에 표기할 사이즈")
+    private Integer display;
 
 
-    public NaverSearchResponseDTO(Long userId, String userName, Integer age) {
-        this.userId = userId;
-        this.userName = userName;
-        this.age = age;
+    @ApiModelProperty(value = "검색 결과 정보 배열")
+    private Items[] items;
+
+
+    public NaverSearchResponseDTO() {
+    }
+
+
+    public NaverSearchResponseDTO(Date lastBuildDate, Integer total, Integer start, Integer display, Items[] items) {
+        this.lastBuildDate = lastBuildDate;
+        this.total = total;
+        this.start = start;
+        this.display = display;
+        this.items = items;
+    }
+
+    static class Items {
+        @JsonProperty("title")
+        private String title;
+        @JsonProperty("link")
+        private String link;
+        @JsonProperty("category")
+        private String category;
+        @JsonProperty("description")
+        private String description;
+        @JsonProperty("telephone")
+        private String telephone;
+        @JsonProperty("address")
+        private String address;
+        @JsonProperty("roadAddress")
+        private String roadAddress;
+        @JsonProperty("mapx")
+        private String mapx;
+        @JsonProperty("mapy")
+        private String mapy;
     }
     
 
