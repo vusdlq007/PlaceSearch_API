@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 @Data
@@ -23,22 +24,22 @@ public class NaverSearchResponseDTO {
 
 
     @ApiModelProperty(value = "검색 결과 정보 배열")
-    private Items[] items;
+    private ArrayList<Items> items;
 
 
     public NaverSearchResponseDTO() {
     }
 
 
-    public NaverSearchResponseDTO(Date lastBuildDate, Integer total, Integer start, Integer display, Items[] items) {
+    public NaverSearchResponseDTO(Date lastBuildDate, Integer total, Integer start, Integer display, ArrayList<Items> items) {
         this.lastBuildDate = lastBuildDate;
         this.total = total;
         this.start = start;
         this.display = display;
         this.items = items;
     }
-
-    static class Items {
+    @Data
+    public static class Items {
         @JsonProperty("title")
         private String title;
         @JsonProperty("link")

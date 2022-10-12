@@ -10,20 +10,19 @@ import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.util.NoSuchElementException;
 
 
 @RestControllerAdvice(basePackageClasses = SearchPlaceRestController.class)
 @Slf4j
 public class SearchPlaceExceptionController {
 
-    //
+
     @ExceptionHandler({
             JpaSystemException.class,
             HibernateError.class
     })
     protected ResponseEntity<?> handleDBException(Exception e) {
-        final SearchResponseDTO errorResponse = new SearchResponseDTO(ResponseCode.SEARCH_LOG_FAIL_DB_ERROR.getErrorCode(), ResponseCode.SEARCH_LOG_FAIL_DB_ERROR.getMessage());
+        final SearchResponseDTO errorResponse = new SearchResponseDTO.Builder(ResponseCode.SEARCH_LOG_FAIL_DB_ERROR.getErrorCode(), ResponseCode.SEARCH_LOG_FAIL_DB_ERROR.getMessage()).build();
 
         return ResponseEntity.status(ResponseCode.SEARCH_LOG_FAIL_DB_ERROR.getErrorCode()).body(errorResponse);
     }
@@ -31,8 +30,9 @@ public class SearchPlaceExceptionController {
     // 500
     @ExceptionHandler()
     protected ResponseEntity<?> handleSearchPlaceException(Exception e) {
-        final SearchResponseDTO errorResponse = new SearchResponseDTO(ResponseCode.PLACE_SEARCH_FAIL.getErrorCode(), ResponseCode.PLACE_SEARCH_FAIL.getMessage());
+        final SearchResponseDTO errorResponse = new SearchResponseDTO.Builder(ResponseCode.PLACE_SEARCH_FAIL.getErrorCode(), ResponseCode.PLACE_SEARCH_FAIL.getMessage()).build();
 
+        e.printStackTrace();
         return ResponseEntity.status(ResponseCode.PLACE_SEARCH_FAIL.getErrorCode()).body(errorResponse);
     }
 

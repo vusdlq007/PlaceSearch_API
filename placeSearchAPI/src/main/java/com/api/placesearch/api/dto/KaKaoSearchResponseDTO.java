@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 @Data
@@ -15,18 +16,19 @@ public class KaKaoSearchResponseDTO {
     private Meta meta;
 
     @ApiModelProperty(value = "검색 결과 정보 배열")
-    private Document[] documents;
+    private ArrayList<Document> documents;
 
 
     public KaKaoSearchResponseDTO() {
     }
 
-    public KaKaoSearchResponseDTO(Document[] documents, Meta meta) {
+    public KaKaoSearchResponseDTO(ArrayList<Document> documents, Meta meta) {
         this.documents = documents;
         this.meta = meta;
     }
 
-    static class Document {
+   @Data
+   public static class Document {
         @JsonProperty("id")
         private String id;
         @JsonProperty("place_name")
@@ -53,7 +55,8 @@ public class KaKaoSearchResponseDTO {
         private String y;
     }
 
-    static class Meta{
+   @Data
+   public static class Meta{
         @JsonProperty("same_name")
         private LinkedHashMap sameName;
         @JsonProperty("pageable_count")

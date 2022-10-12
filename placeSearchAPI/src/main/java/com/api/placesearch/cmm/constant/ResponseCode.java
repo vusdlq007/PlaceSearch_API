@@ -13,6 +13,7 @@ public enum ResponseCode {
 
     PLACE_SEARCH_SUCCESS("SUCCESS",200,"장소 리스트 조회에 성공하였습니다."),
     PLACE_SEARCH_FAIL("INTER SERVER ERROR",500,"장소 리스트 조회에 실패하였습니다."),
+    PLACE_SEARCH_AGG_FAIL("INTER SERVER ERROR",502,"장소 리스트 조회간 정보 종합중 실패하였습니다. 시스템 로그를 확인해주세요."),
     KAKAO_PLACE_SEARCH_SUCCESS("SUCCESS",200,"카카오 키워드 장소 조회 API 호출에 성공하였습니다."),
     KAKAO_PLACE_SEARCH_FAIL("INTER SERVER ERROR",500,"카카오 키워드 장소 조회 API 호출에 실패하였습니다."),
     NAVER_PLACE_SEARCH_SUCCESS("SUCCESS",200,"네이버 키워드 장소 조회 API 호출에 성공하였습니다."),

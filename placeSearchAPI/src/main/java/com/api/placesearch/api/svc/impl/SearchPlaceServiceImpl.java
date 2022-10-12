@@ -56,9 +56,6 @@ public class SearchPlaceServiceImpl implements SearchPlaceService {
     SearchResultRepository searchResultRepository;
 
 
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
-
-
     public SearchPlaceServiceImpl(SearchResultRepository searchResultRepository) {
         this.searchResultRepository = searchResultRepository;
     }
@@ -66,9 +63,6 @@ public class SearchPlaceServiceImpl implements SearchPlaceService {
 
     @Override
     public SearchResponseDTO searchPlace(String keyword, Integer size, Integer page, String sort) throws SSLException {
-
-        AtomicReference<NaverSearchResponseDTO> tmp = null;
-        AtomicReference<KaKaoSearchResponseDTO> tmp2 = null;
 
         Mono<KaKaoSearchResponseDTO> kakaoResult = null;
         Mono<NaverSearchResponseDTO> naverResult = null;
@@ -79,7 +73,7 @@ public class SearchPlaceServiceImpl implements SearchPlaceService {
             kakaoResult.subscribeOn(Schedulers.boundedElastic());
         } catch (Exception e) {
             e.printStackTrace();
-            log.error("ErrorCode:%n, ErrorMSG:%s",ResponseCode.KAKAO_PLACE_SEARCH_FAIL.getErrorCode(),ResponseCode.KAKAO_PLACE_SEARCH_FAIL.getMessage());
+            log.error("ErrorCode:%d, ErrorMSG:%s",ResponseCode.KAKAO_PLACE_SEARCH_FAIL.getErrorCode(),ResponseCode.KAKAO_PLACE_SEARCH_FAIL.getMessage());
         }
 
         //Naver API 호출.
@@ -88,20 +82,23 @@ public class SearchPlaceServiceImpl implements SearchPlaceService {
             naverResult.subscribeOn(Schedulers.boundedElastic());
         }catch (Exception e){
             e.printStackTrace();
-            log.error("ErrorCode:%n, ErrorMSG:%s",ResponseCode.NAVER_PLACE_SEARCH_FAIL.getErrorCode(),ResponseCode.NAVER_PLACE_SEARCH_FAIL.getMessage());
+            log.error("ErrorCode:%d, ErrorMSG:%s",ResponseCode.NAVER_PLACE_SEARCH_FAIL.getErrorCode(),ResponseCode.NAVER_PLACE_SEARCH_FAIL.getMessage());
         }
 
         // 각 API 호출이 모두 완료되면 동기로 응답값 종합.
        Tuple2<KaKaoSearchResponseDTO, NaverSearchResponseDTO> tuple2 = Mono.zip(kakaoResult,naverResult).block();
 
+       SearchResponseDTO response = searchApiUtils.searchAggregation(tuple2.getT1(),tuple2.getT2());
         //1. NaverSearchResponseDTO 초기화.
         //2. subscribe로 받는법.
         //3. 호출 결과 종합.
         //4. DB에 로그 쌓는 AOP구현 (로그 테이블 + 조회수 테이블)
         //5. Redis 연동 후 TOP 10 키워드 Redis에 1분에 한번씩 넣는 cronjob으로 넣고 요청은 읽어가도록 구현.
 
+        log.debug("## Y_TEST test"+response.getResMessage());
+        log.debug("## Y_TEST value"+response.getPlaces());
 
-         return null;
+         return response;
     }
 
 

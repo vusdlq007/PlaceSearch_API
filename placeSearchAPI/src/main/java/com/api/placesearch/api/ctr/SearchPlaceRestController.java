@@ -65,21 +65,21 @@ public class SearchPlaceRestController {
         return searchPlaceService.searchPlace(keyword, size, page, sort);
     }
 
-    /**
-     * 장소 상세 조회.
-     *
-     * @param
-     * @return
-     */
-    @ApiOperation(value = "특정 장소에 대한 상세 조회", notes = "")
-    @ApiResponses({
-            @ApiResponse(code = 200, message = "API 정상 응답"),
-            @ApiResponse(code = 500, message = "서버 에러")
-    })
-    @GetMapping("/detail")
-    public SearchResponseDTO searchPlaceDetail(SearchRequestDTO requestDTO) {
-
-        return searchPlaceService.searchPlaceDetail(requestDTO);
-    }
+//    /**
+//     * 장소 상세 조회.
+//     *
+//     * @param
+//     * @return
+//     */
+//    @ApiOperation(value = "특정 장소에 대한 상세 조회", notes = "")
+//    @ApiResponses({
+//            @ApiResponse(code = 200, message = "API 정상 응답"),
+//            @ApiResponse(code = 500, message = "서버 에러")
+//    })
+//    @GetMapping("/detail")
+//    public SearchResponseDTO searchPlaceDetail(SearchRequestDTO requestDTO) {
+//
+//        return searchPlaceService.searchPlaceDetail(requestDTO);
+//    }
 
 }
