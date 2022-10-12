@@ -95,8 +95,6 @@ public class SearchPlaceServiceImpl implements SearchPlaceService {
         //4. DB에 로그 쌓는 AOP구현 (로그 테이블 + 조회수 테이블)
         //5. Redis 연동 후 TOP 10 키워드 Redis에 1분에 한번씩 넣는 cronjob으로 넣고 요청은 읽어가도록 구현.
 
-        log.debug("## Y_TEST test"+response.getResMessage());
-        log.debug("## Y_TEST value"+response.getPlaces());
 
          return response;
     }

@@ -1,7 +1,9 @@
 package com.api.placesearch.api.dto;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
+@Data
 public class PlaceDTO {
 
     @ApiModelProperty(value = "장소명")
