@@ -35,12 +35,21 @@ public class Util {
     }
 
     /**
-     * 공백을 포함한 html태그 제거 반환.
+     * html태그 제거 반환.
      * @param item
      * @return
      */
     public static String tagRemove(String item){
         return item.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");
+    }
+
+    /**
+     * 공백 제거 반환.
+     * @param item
+     * @return
+     */
+    public static String spaceRemove(String item){
+        return item.replaceAll("\\s+", "");
     }
 
     /**
@@ -51,8 +60,8 @@ public class Util {
     public static LinkedHashMap kakaoArrayListToHashMap(KaKaoSearchResponseDTO kakaoResult){
         LinkedHashMap<String,KaKaoSearchResponseDTO.Document> result = new LinkedHashMap<>();
         
-        for(KaKaoSearchResponseDTO.Document tmpDoc : kakaoResult.getDocuments()){
-            result.put(tmpDoc.getPlaceName(),tmpDoc);
+        for(KaKaoSearchResponseDTO.Document doc : kakaoResult.getDocuments()){
+            result.put(spaceRemove(doc.getPlaceName()),doc);
         }
 
         return result;
@@ -66,8 +75,9 @@ public class Util {
     public static LinkedHashMap naverArrayListToHashMap(NaverSearchResponseDTO naverResult){
         LinkedHashMap<String,NaverSearchResponseDTO.Items> result = new LinkedHashMap<>();
 
-        for(NaverSearchResponseDTO.Items tmpItem : naverResult.getItems()){
-            result.put(tmpItem.getTitle(),tmpItem);
+        for(NaverSearchResponseDTO.Items item : naverResult.getItems()){
+            item.setTitle(tagRemove(item.getTitle()));
+            result.put(spaceRemove(item.getTitle()),item);
         }
 
         return result;
