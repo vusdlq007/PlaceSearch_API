@@ -38,6 +38,7 @@ spring:
       ddl-auto: none
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl   # hibernate의 DB Physical Naming 전략에 따라 입력한 그대로 테이블 및 엔티티에 맵핑. 안하면 Spring boot의 전략으로 CamelCase를 snakecase로변환. (@Table에 입력한 그대로 사용)
+      use-new-id-generator-mappings: true
     defer-datasource-initialization: true
   sql:
     init:
