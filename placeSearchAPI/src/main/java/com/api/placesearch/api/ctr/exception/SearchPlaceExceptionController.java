@@ -1,5 +1,6 @@
 package com.api.placesearch.api.ctr.exception;
 
+import com.api.placesearch.aop.logging.SearchLogging;
 import com.api.placesearch.api.ctr.SearchPlaceRestController;
 import com.api.placesearch.api.dto.SearchResponseDTO;
 import com.api.placesearch.cmm.constant.ResponseCode;
@@ -11,8 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 
-
-@RestControllerAdvice(basePackageClasses = SearchPlaceRestController.class)
+@RestControllerAdvice(basePackageClasses = {SearchLogging.class,SearchPlaceRestController.class })
 @Slf4j
 public class SearchPlaceExceptionController {
 
@@ -27,13 +27,34 @@ public class SearchPlaceExceptionController {
         return ResponseEntity.status(ResponseCode.SEARCH_LOG_FAIL_DB_ERROR.getErrorCode()).body(errorResponse);
     }
 
-    // 500
+
     @ExceptionHandler()
     protected ResponseEntity<?> handleSearchPlaceException(Exception e) {
         final SearchResponseDTO errorResponse = new SearchResponseDTO.Builder(ResponseCode.PLACE_SEARCH_FAIL.getErrorCode(), ResponseCode.PLACE_SEARCH_FAIL.getMessage()).build();
 
-        e.printStackTrace();
+        e.printStackTrace();    //임시
         return ResponseEntity.status(ResponseCode.PLACE_SEARCH_FAIL.getErrorCode()).body(errorResponse);
+    }
+
+
+    @ExceptionHandler({
+            IllegalArgumentException.class
+    })
+    protected ResponseEntity<?> handleSearchPlaceIllegalArgException(Exception e) {
+        final SearchResponseDTO errorResponse = new SearchResponseDTO.Builder(ResponseCode.PLACE_SEARCH_ILLEGAL_ARG_FAIL.getErrorCode(), ResponseCode.PLACE_SEARCH_ILLEGAL_ARG_FAIL.getMessage()).build();
+
+        e.printStackTrace();    //임시
+        return ResponseEntity.status(ResponseCode.PLACE_SEARCH_ILLEGAL_ARG_FAIL.getErrorCode()).body(errorResponse);
+    }
+
+    @ExceptionHandler({
+            NullPointerException.class
+    })
+    protected ResponseEntity<?> handleSearchPlaceNullPointException(Exception e) {
+        final SearchResponseDTO errorResponse = new SearchResponseDTO.Builder(ResponseCode.PLACE_SEARCH_ILLEGAL_ARG_FAIL.getErrorCode(), ResponseCode.PLACE_SEARCH_ILLEGAL_ARG_FAIL.getMessage()).build();
+
+        e.printStackTrace();    //임시
+        return ResponseEntity.status(ResponseCode.PLACE_SEARCH_ILLEGAL_ARG_FAIL.getErrorCode()).body(errorResponse);
     }
 
 
