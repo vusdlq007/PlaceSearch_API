@@ -1,7 +1,6 @@
 package com.api.placesearch.api.svc;
 
 
-import com.api.placesearch.api.dto.SearchRequestDTO;
 import com.api.placesearch.api.dto.SearchResponseDTO;
 
 

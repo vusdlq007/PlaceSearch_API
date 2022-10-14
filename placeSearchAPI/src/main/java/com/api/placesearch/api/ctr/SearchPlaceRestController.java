@@ -1,12 +1,11 @@
 package com.api.placesearch.api.ctr;
 
-import com.api.placesearch.api.dto.SearchRequestDTO;
 import com.api.placesearch.api.dto.SearchResponseDTO;
 import com.api.placesearch.api.svc.*;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
+
 import org.springframework.web.bind.annotation.*;
 
 import javax.net.ssl.SSLException;
@@ -65,21 +64,5 @@ public class SearchPlaceRestController {
         return searchPlaceService.searchPlace(keyword, size, page, sort);
     }
 
-//    /**
-//     * 장소 상세 조회.
-//     *
-//     * @param
-//     * @return
-//     */
-//    @ApiOperation(value = "특정 장소에 대한 상세 조회", notes = "")
-//    @ApiResponses({
-//            @ApiResponse(code = 200, message = "API 정상 응답"),
-//            @ApiResponse(code = 500, message = "서버 에러")
-//    })
-//    @GetMapping("/detail")
-//    public SearchResponseDTO searchPlaceDetail(SearchRequestDTO requestDTO) {
-//
-//        return searchPlaceService.searchPlaceDetail(requestDTO);
-//    }
 
 }

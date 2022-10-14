@@ -9,7 +9,11 @@ import java.util.Optional;
 
 public interface SearchResultRepository extends JpaRepository<Place, String> {     // <Entity, 기본키 타입>
 
-//    Optional<Place> findById(String id);
+    Optional<Place> findBySeq(String seq);
+
+    Optional<Place> findByKeyword(String keyword);
+
+
 
 //    List<Place> findByName(String name);
 
