@@ -13,8 +13,8 @@ public class SearchLog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    @Column(name = "SEQ")
+    private Long seq;
 
     @Column(name = "MAC_ADD")
     private String macAdd;
@@ -25,12 +25,15 @@ public class SearchLog {
     @Column(name = "KEYWORD")
     private String keyword;
 
-    @Column(name = "VIEWS")
-    private Integer views;
-
     @Column(name = "CREATED_AT")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm:ss")
     private LocalDateTime createdAt;
 
 
+    public SearchLog(String macAdd, String os, String keyword, LocalDateTime createdAt) {
+        this.macAdd = macAdd;
+        this.os = os;
+        this.keyword = keyword;
+        this.createdAt = createdAt;
+    }
 }

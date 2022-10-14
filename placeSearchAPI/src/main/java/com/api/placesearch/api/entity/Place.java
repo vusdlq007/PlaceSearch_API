@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class Place {
 
     @Id
-    @JoinColumn
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "SEQ")
     private Long seq;
 
@@ -32,4 +32,21 @@ public class Place {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm:ss")
     private LocalDateTime createdAt;
 
+    public Place(){
+
+    }
+    public Place(String keyword, Integer views, LocalDateTime createdAt) {
+        this.keyword = keyword;
+        this.views = views;
+        this.createdAt = createdAt;
+    }
+
+
+    public void update(Long seq, String keyword, Integer views, LocalDateTime createdAt) {
+        this.seq = seq;
+        this.keyword = keyword;
+        this.views = views;
+        this.updatedAt = LocalDateTime.now();
+        this.createdAt = createdAt;
+    }
 }
