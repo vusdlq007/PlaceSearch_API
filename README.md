@@ -4,9 +4,9 @@
 ###
 #### 주요 기능
 * [기본 : 장소 검색]
-* [기본 : 검색 키워드 목록]
-* [추가 : 사용자 검색 활동 추적 로깅 ]
-* [추가 : -필요시 개발간 추가 예정-]
+* [기본 : 추천 키워드 목록 조회]
+* [추가 : 사용자 검색 활동 추적 로깅 및 ]
+
 
 ## 프로젝트 개발환경
 - 로컬 개발환경 OS : window 10
@@ -98,3 +98,30 @@
 #### [부가 설명]
 - Maria DB와 Redis는 구현 후 테스트간 직접 로컬PC에 Docker-container 형태로 기동하여 테스트 하였음.
 - Redis-cli를 통해 Redis-server에 저장된 값을 확인하고 싶은 경우 첨부된 Redis-cli-README.md 참조.
+
+
+### [테스트 방법]
+*MariaDB(localhost:13306) 기동 후 API application(localhost:9803) 기동
+**1)장소 검색 API** 
+-Keyword만 입력했을때:  curl -X GET "http://localhost:9802/v1/api/place?keyword=카카오뱅크"
+-Keyword,size만 입력했을때:curl -X GET "http://localhost:9802/v1/api/place?keyword=카카오뱅크&size=5"
+-Keyword,size,page 입력했을때:
+curl -X GET "http://localhost:9802/v1/api/place?keyword=카카오뱅크&size=5&page=1"
+
+**2)추천 키워드 목록 조회 API**
+-param이 없이 호출했을때:
+ curl -X GET "http://localhost:9802/v1/api/recomand/place"
+-size만 입력했을때:
+ curl -X GET "http://localhost:9802/v1/api/recomand/place?size=5"
+-size,page 입력했을때:
+ curl -X GET "http://localhost:9802/v1/api/recomand/place?size=5&page=1"
+
+**3)키워드 검색로그 조회 API**
+ -keyword만 입력했을때:
+ curl -X GET "http://localhost:9802/v1/api/place/log?keyword=제주도"
+-keyword,size만 입력했을때:
+ curl -X GET "http://localhost:9802/v1/api/place/log?keyword=제주도&size=5"
+-keyword,size,page 입력했을때:
+ curl -X GET "http://localhost:9802/v1/api/place/log?keyword=제주도&size=5&page=0"
+ 
+혹시 파일이 보이지 않거나 내용에 이해가 가지않는 부분이나 테스트방식간 에러가  있다면 핸드폰이나 이메일로 연락부탁리겠습니다!
