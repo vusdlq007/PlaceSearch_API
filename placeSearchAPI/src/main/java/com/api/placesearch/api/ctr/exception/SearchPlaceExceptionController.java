@@ -2,7 +2,7 @@ package com.api.placesearch.api.ctr.exception;
 
 import com.api.placesearch.aop.logging.SearchLogging;
 import com.api.placesearch.api.ctr.SearchPlaceRestController;
-import com.api.placesearch.api.dto.SearchResponseDTO;
+import com.api.placesearch.api.dto.response.SearchResponseDTO;
 import com.api.placesearch.cmm.constant.ResponseCode;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.HibernateError;

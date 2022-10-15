@@ -1,10 +1,9 @@
-package com.api.placesearch.api.dto;
+package com.api.placesearch.api.dto.response;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 
 //@AllArgsConstructor

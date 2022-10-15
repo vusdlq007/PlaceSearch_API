@@ -1,7 +1,7 @@
 package com.api.placesearch.cmm.util;
 
-import com.api.placesearch.api.dto.KaKaoSearchResponseDTO;
-import com.api.placesearch.api.dto.NaverSearchResponseDTO;
+import com.api.placesearch.api.dto.response.KaKaoSearchResponseDTO;
+import com.api.placesearch.api.dto.response.NaverSearchResponseDTO;
 
 import java.util.LinkedHashMap;
 import java.util.Random;

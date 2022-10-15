@@ -29,6 +29,8 @@ public class SearchLog {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm:ss")
     private LocalDateTime createdAt;
 
+    public SearchLog() {
+    }
 
     public SearchLog(String macAdd, String os, String keyword, LocalDateTime createdAt) {
         this.macAdd = macAdd;
@@ -36,4 +38,6 @@ public class SearchLog {
         this.keyword = keyword;
         this.createdAt = createdAt;
     }
+
+
 }

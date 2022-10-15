@@ -1,9 +1,9 @@
 package com.api.placesearch.cmm.util;
 
-import com.api.placesearch.api.dto.KaKaoSearchResponseDTO;
-import com.api.placesearch.api.dto.NaverSearchResponseDTO;
+import com.api.placesearch.api.dto.response.KaKaoSearchResponseDTO;
+import com.api.placesearch.api.dto.response.NaverSearchResponseDTO;
 import com.api.placesearch.api.dto.PlaceDTO;
-import com.api.placesearch.api.dto.SearchResponseDTO;
+import com.api.placesearch.api.dto.response.SearchResponseDTO;
 import com.api.placesearch.cmm.constant.Constants;
 import com.api.placesearch.cmm.constant.KaKaoUrlCode;
 import com.api.placesearch.cmm.constant.NaverUrlCode;

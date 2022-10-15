@@ -1,4 +1,4 @@
-package com.api.placesearch.api.dto;
+package com.api.placesearch.api.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;

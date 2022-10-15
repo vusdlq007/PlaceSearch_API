@@ -1,15 +1,15 @@
-package com.api.placesearch.api.dto;
+package com.api.placesearch.api.dto.response;
 
+import com.api.placesearch.api.dto.SearchLogDTO;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-
 
 import java.util.List;
 
 
 //@AllArgsConstructor
 @Data
-public class SearchResponseDTO {
+public class SearchLogResponseDTO {
 
     @ApiModelProperty(value = "응답 코드", dataType = "integer", example = "200")
     private Integer resCode;
@@ -19,18 +19,12 @@ public class SearchResponseDTO {
     @ApiModelProperty(value = "검색 키워드", dataType = "string")
     private String keyword;
 
-    @ApiModelProperty(value = "한페이지에 보여질 건수", dataType = "integer")
-    private Integer displayCnt;
-
-    @ApiModelProperty(value = "현재 페이지", dataType = "integer")
-    private Integer curPage;
-
     @ApiModelProperty(value = "총 검색 건수", dataType = "integer")
     private Integer totalCnt;
 
 
-    @ApiModelProperty(value = "조회 정보 리스트 데이터")
-    private List<PlaceDTO> places;
+    @ApiModelProperty(value = "로그 정보 리스트 데이터")
+    private List<SearchLogDTO> searchLogs;
 
 
     public static class Builder {
@@ -38,10 +32,8 @@ public class SearchResponseDTO {
         private Integer resCode;
         private String resMessage;
         private String keyword;
-        private Integer displayCnt;
-        private Integer curPage;
         private Integer totalCnt;
-        private List<PlaceDTO> places;
+        private List<SearchLogDTO> searchLogs;
 
         public Builder(Integer resCode, String resMessage) {
             this.resCode = resCode;
@@ -54,17 +46,6 @@ public class SearchResponseDTO {
             return this;
         }
 
-        public Builder displayCnt(Integer displayCnt) {
-            this.displayCnt = displayCnt;
-
-            return this;
-        }
-
-        public Builder curPage(Integer curPage) {
-            this.curPage = curPage;
-
-            return this;
-        }
 
         public Builder totalCnt(Integer totalCnt) {
             this.totalCnt = totalCnt;
@@ -72,25 +53,23 @@ public class SearchResponseDTO {
             return this;
         }
 
-        public Builder places(List<PlaceDTO> places) {
-            this.places = places;
+        public Builder searchLogs(List<SearchLogDTO> searchLogs) {
+            this.searchLogs = searchLogs;
 
             return this;
         }
 
-        public SearchResponseDTO build() {
-            return new SearchResponseDTO(this);
+        public SearchLogResponseDTO build() {
+            return new SearchLogResponseDTO(this);
         }
     }
 
-    private SearchResponseDTO(Builder builder) {
+    private SearchLogResponseDTO(Builder builder) {
         resCode = builder.resCode;
         resMessage = builder.resMessage;
         keyword = builder.keyword;
-        displayCnt = builder.displayCnt;
-        curPage = builder.curPage;
         totalCnt = builder.totalCnt;
-        places = builder.places;
+        searchLogs = builder.searchLogs;
     }
 
 }

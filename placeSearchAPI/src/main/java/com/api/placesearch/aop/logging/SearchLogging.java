@@ -1,9 +1,8 @@
 package com.api.placesearch.aop.logging;
 
 
-import com.api.placesearch.api.dto.SearchInfoResponseDTO;
 import com.api.placesearch.api.dto.SearchLogDTO;
-import com.api.placesearch.api.dto.SearchResponseDTO;
+import com.api.placesearch.api.dto.response.SearchResponseDTO;
 import com.api.placesearch.api.svc.SearchPlaceLogService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +11,6 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 

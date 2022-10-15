@@ -1,9 +1,10 @@
 package com.api.placesearch.api.svc.impl;
 
-import com.api.placesearch.api.dto.SearchInfoResponseDTO;
+
 import com.api.placesearch.api.dto.SearchLogDTO;
-import com.api.placesearch.api.dto.SearchResponseDTO;
-import com.api.placesearch.api.entity.Place;
+import com.api.placesearch.api.dto.response.SearchLogResponseDTO;
+import com.api.placesearch.api.dto.response.SearchResponseDTO;
+
 import com.api.placesearch.api.entity.SearchLog;
 import com.api.placesearch.api.repo.SearchLogRepository;
 
@@ -12,12 +13,16 @@ import com.api.placesearch.cmm.constant.ResponseCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Slf4j
 @Service
@@ -31,24 +36,42 @@ public class SearchPlaceLogServiceImpl implements SearchPlaceLogService {
     SearchLogRepository searchLogRepository;
 
 
-    public SearchPlaceLogServiceImpl(SearchLogRepository searchLogRepository){
+    public SearchPlaceLogServiceImpl(SearchLogRepository searchLogRepository) {
         this.searchLogRepository = searchLogRepository;
     }
 
 
     /**
      * 키워드 로그 조회.
+     *
      * @param pageable
      * @return
      */
     @Override
     @Transactional(readOnly = true)
-    public SearchResponseDTO searchLog(Pageable pageable) {
-        return null;
+    public SearchLogResponseDTO searchLog(String keyword, Pageable pageable) {
+        Page<SearchLog> searchLogs = searchLogRepository.findByKeywordLike(keyword, pageable);
+        List<SearchLog> searchlogArr = searchLogs.getContent();
+        List<SearchLogDTO> logList = new ArrayList<>();
+
+        for (SearchLog logEntity : searchlogArr) {
+            logList.add(new SearchLogDTO.Builder(logEntity.getKeyword(), logEntity.getOs())
+                    .seq(logEntity.getSeq())
+                    .macAdd(logEntity.getMacAdd())
+                    .createdAd(logEntity.getCreatedAt())
+                    .build());
+        }
+
+        return new SearchLogResponseDTO.Builder(ResponseCode.SEARCH_LOG_SUCCESS.getErrorCode(), ResponseCode.SEARCH_LOG_SUCCESS.getMessage())
+                .keyword(keyword)
+                .totalCnt(logList.size())
+                .searchLogs(logList)
+                .build();
     }
 
     /**
      * 키워드 조회 로그 저장.
+     *
      * @param searchResInfo
      * @return
      */
@@ -60,7 +83,6 @@ public class SearchPlaceLogServiceImpl implements SearchPlaceLogService {
 
         return new SearchResponseDTO.Builder(ResponseCode.SEARCH_INFO_UPDATE_SUCCESS.getErrorCode(), ResponseCode.SEARCH_INFO_UPDATE_SUCCESS.getMessage())
                 .keyword(searchResInfo.getKeyword())
-                .totalCnt(searchResInfo.getTotalViews())
                 .build();
 
     }

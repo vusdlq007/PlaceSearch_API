@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 @Data
 public class SearchLogDTO {
 
+    @ApiModelProperty(value = "로그 seq")
+    private Long seq;
 
     @ApiModelProperty(value = "사용자 기기 MAC 주소")
     private String macAdd;
@@ -18,34 +20,32 @@ public class SearchLogDTO {
     @ApiModelProperty(value = "검색키워드", dataType = "string")
     private String keyword;
 
-    @ApiModelProperty(value = "누적 조회 건수", dataType = "integer")
-    private Integer totalViews;
 
     @ApiModelProperty(value = "로그 생성 시간")
     private LocalDateTime createdAd;
 
     public static class Builder {
 
+        private Long seq;
         private String macAdd;
         private String os;
         private String keyword;
-        private Integer totalViews;
         private LocalDateTime createdAd;
 
 
-        public Builder(String keyword,String os) {
+        public Builder(String keyword, String os) {
             this.keyword = keyword;
             this.os = os;
         }
 
-        public Builder macAdd(String macAdd) {
-            this.macAdd = macAdd;
+        public Builder seq(Long seq) {
+            this.seq = seq;
 
             return this;
         }
 
-        public Builder totalViews(Integer totalViews) {
-            this.totalViews = totalViews;
+        public Builder macAdd(String macAdd) {
+            this.macAdd = macAdd;
 
             return this;
         }
@@ -63,10 +63,10 @@ public class SearchLogDTO {
     }
 
     private SearchLogDTO(Builder builder) {
+        seq = builder.seq;
         os = builder.os;
         macAdd = builder.macAdd;
         keyword = builder.keyword;
-        totalViews = builder.totalViews;
         createdAd = builder.createdAd;
     }
 

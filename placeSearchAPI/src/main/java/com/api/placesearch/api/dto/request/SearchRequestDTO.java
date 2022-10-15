@@ -1,4 +1,4 @@
-package com.api.placesearch.api.dto;
+package com.api.placesearch.api.dto.request;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

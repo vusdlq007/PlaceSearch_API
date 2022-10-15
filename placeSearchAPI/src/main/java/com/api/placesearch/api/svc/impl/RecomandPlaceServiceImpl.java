@@ -1,10 +1,8 @@
 package com.api.placesearch.api.svc.impl;
 
-import com.api.placesearch.api.dto.SearchRequestDTO;
-import com.api.placesearch.api.dto.SearchResponseDTO;
+import com.api.placesearch.api.dto.response.SearchResponseDTO;
 import com.api.placesearch.api.repo.SearchResultRepository;
 import com.api.placesearch.api.svc.RecomandService;
-import com.api.placesearch.api.svc.SearchPlaceService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

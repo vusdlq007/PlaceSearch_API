@@ -1,8 +1,8 @@
 package com.api.placesearch.api.svc;
 
 
-import com.api.placesearch.api.dto.SearchInfoResponseDTO;
-import com.api.placesearch.api.dto.SearchResponseDTO;
+import com.api.placesearch.api.dto.response.SearchInfoResponseDTO;
+import com.api.placesearch.api.dto.response.SearchResponseDTO;
 
 import javax.net.ssl.SSLException;
 

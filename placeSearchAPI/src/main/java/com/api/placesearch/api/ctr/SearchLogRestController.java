@@ -1,9 +1,7 @@
 package com.api.placesearch.api.ctr;
 
-import com.api.placesearch.api.dto.SearchRequestDTO;
-import com.api.placesearch.api.dto.SearchResponseDTO;
+import com.api.placesearch.api.dto.response.SearchLogResponseDTO;
 import com.api.placesearch.api.svc.SearchPlaceLogService;
-import com.api.placesearch.api.svc.SearchPlaceService;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +33,9 @@ public class SearchLogRestController {
             @ApiResponse(code = 500, message = "서버 에러")
     })
     @GetMapping("")
-    public SearchResponseDTO searchPlace(Pageable pageable){
+    public SearchLogResponseDTO searchPlace(@RequestParam String keyword, Pageable pageable){
 
-        return searchPlaceLogService.searchLog(pageable);
+        return searchPlaceLogService.searchLog(keyword, pageable);
     }
 
 

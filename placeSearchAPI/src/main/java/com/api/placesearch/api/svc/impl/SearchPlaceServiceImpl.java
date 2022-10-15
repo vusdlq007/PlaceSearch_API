@@ -1,7 +1,9 @@
 package com.api.placesearch.api.svc.impl;
 
-import com.api.placesearch.api.dto.*;
-
+import com.api.placesearch.api.dto.response.KaKaoSearchResponseDTO;
+import com.api.placesearch.api.dto.response.NaverSearchResponseDTO;
+import com.api.placesearch.api.dto.response.SearchInfoResponseDTO;
+import com.api.placesearch.api.dto.response.SearchResponseDTO;
 import com.api.placesearch.api.entity.Place;
 import com.api.placesearch.api.repo.SearchResultRepository;
 import com.api.placesearch.api.svc.SearchPlaceService;
@@ -22,9 +24,6 @@ import reactor.core.scheduler.Schedulers;
 import reactor.util.function.Tuple2;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 
@@ -61,6 +60,14 @@ public class SearchPlaceServiceImpl implements SearchPlaceService {
     }
 
 
+    /**
+     * 키워드로 장소 검색.
+     * @param keyword
+     * @param size
+     * @param page
+     * @param sort
+     * @return
+     */
     @Override
     public SearchResponseDTO searchPlace(String keyword, Integer size, Integer page, String sort) {
 
@@ -86,11 +93,12 @@ public class SearchPlaceServiceImpl implements SearchPlaceService {
         // 각 API 호출이 모두 완료되면 동기로 응답값 종합.
        Tuple2<KaKaoSearchResponseDTO, NaverSearchResponseDTO> tuple2 = Mono.zip(kakaoResult,naverResult).block();
 
-       SearchResponseDTO response = searchApiUtils.searchAggregation(tuple2.getT1(),tuple2.getT2(), keyword, size == null ? 0 : size, page == null ? 0 : page);
+       SearchResponseDTO response = searchApiUtils.searchAggregation(tuple2.getT1(),tuple2.getT2(), keyword, size == null ? 10 : size, page == null ? 0 : page);
         //1. NaverSearchResponseDTO 초기화.
         //2. subscribe로 받는법.
         //3. 호출 결과 종합.
         //4. DB에 로그 쌓는 AOP구현 (로그 테이블 + 조회수 테이블)
+        //5. 가장많이 조회된 키워드 10개 조회.
         //5. Redis 연동 후 TOP 10 키워드 Redis에 1분에 한번씩 넣는 cronjob으로 넣고 요청은 읽어가도록 구현.
         //6. 테스트코드 작성.
         //7. 실패케이스 잡기.
