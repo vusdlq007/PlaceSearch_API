@@ -3,7 +3,7 @@
 <!-- 300초마다 설정 파일의 변경을 확인 하여 변경시 갱신 -->
 <configuration scan="true" scanPeriod="300 seconds">
     <!-- logback 이용시 사용하는 xml -->
-    <property scope="context" name="logHome" value="logs/AccountManagerApi" />
+    <property scope="context" name="logHome" value="logs/PlaceSearchApi" />
 <!--    <property name="logFileName">dashboard_api_log</property>-->
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
