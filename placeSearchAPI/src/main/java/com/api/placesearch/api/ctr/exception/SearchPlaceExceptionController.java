@@ -3,22 +3,31 @@ package com.api.placesearch.api.ctr.exception;
 import com.api.placesearch.aop.logging.SearchLogging;
 import com.api.placesearch.api.ctr.SearchPlaceRestController;
 import com.api.placesearch.api.dto.response.SearchResponseDTO;
+import com.api.placesearch.api.svc.SearchPlaceLogService;
+import com.api.placesearch.api.svc.SearchPlaceService;
+import com.api.placesearch.api.svc.impl.SearchPlaceLogServiceImpl;
+import com.api.placesearch.api.svc.impl.SearchPlaceServiceImpl;
 import com.api.placesearch.cmm.constant.ResponseCode;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.HibernateError;
+import org.hibernate.exception.SQLGrammarException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 
-@RestControllerAdvice(basePackageClasses = {SearchLogging.class,SearchPlaceRestController.class })
+
+@RestControllerAdvice(basePackageClasses = {SearchLogging.class,SearchPlaceRestController.class,
+        SearchPlaceLogService.class, SearchPlaceService.class})
 @Slf4j
 public class SearchPlaceExceptionController {
 
 
     @ExceptionHandler({
             JpaSystemException.class,
+            SQLGrammarException.class,
             HibernateError.class
     })
     protected ResponseEntity<?> handleDBException(Exception e) {
@@ -46,7 +55,8 @@ public class SearchPlaceExceptionController {
     }
 
     @ExceptionHandler({
-            NullPointerException.class
+            NullPointerException.class,
+            SQLIntegrityConstraintViolationException.class
     })
     protected ResponseEntity<?> handleSearchPlaceNullPointException(Exception e) {
         final SearchResponseDTO errorResponse = new SearchResponseDTO.Builder(ResponseCode.PLACE_SEARCH_NULL_FAIL.getErrorCode(), ResponseCode.PLACE_SEARCH_NULL_FAIL.getMessage()).build();
@@ -54,6 +64,7 @@ public class SearchPlaceExceptionController {
 
         return ResponseEntity.status(ResponseCode.PLACE_SEARCH_NULL_FAIL.getErrorCode()).body(errorResponse);
     }
+
 
 
 }
