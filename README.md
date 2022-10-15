@@ -102,6 +102,8 @@
 
 ### [테스트 방법]
 *MariaDB(localhost:13306) 기동 후 API application(localhost:9803) 기동
+
+
 **1)장소 검색 API** 
 -Keyword만 입력했을때:  curl -X GET "http://localhost:9802/v1/api/place?keyword=카카오뱅크"
 -Keyword,size만 입력했을때:curl -X GET "http://localhost:9802/v1/api/place?keyword=카카오뱅크&size=5"
