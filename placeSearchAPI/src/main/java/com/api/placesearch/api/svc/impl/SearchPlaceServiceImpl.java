@@ -94,14 +94,6 @@ public class SearchPlaceServiceImpl implements SearchPlaceService {
        Tuple2<KaKaoSearchResponseDTO, NaverSearchResponseDTO> tuple2 = Mono.zip(kakaoResult,naverResult).block();
 
        SearchResponseDTO response = searchApiUtils.searchAggregation(tuple2.getT1(),tuple2.getT2(), keyword, size == null ? 10 : size, page == null ? 0 : page);
-        //1. NaverSearchResponseDTO 초기화.
-        //2. subscribe로 받는법.
-        //3. 호출 결과 종합.
-        //4. DB에 로그 쌓는 AOP구현 (로그 테이블 + 조회수 테이블)
-        //5. 가장많이 조회된 키워드 10개 조회.
-        //5. Redis 연동 후 TOP 10 키워드 Redis에 1분에 한번씩 넣는 cronjob으로 넣고 요청은 읽어가도록 구현.
-        //6. 테스트코드 작성.
-        //7. 실패케이스 잡기.
 
         // 조회 수 +1
         saveSearchInfo(keyword);
