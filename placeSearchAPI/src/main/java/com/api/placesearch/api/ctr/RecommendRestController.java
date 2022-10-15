@@ -1,10 +1,11 @@
 package com.api.placesearch.api.ctr;
 
-import com.api.placesearch.api.dto.response.SearchResponseDTO;
-import com.api.placesearch.api.svc.RecomandService;
+import com.api.placesearch.api.dto.response.KeywordRecommendResponseDTO;
+import com.api.placesearch.api.svc.RecommendService;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -19,7 +20,7 @@ public class RecommendRestController {
 
     // 필드명을 구현체 클래스 명과 맞춰줌.
     @Autowired
-    private RecomandService recomandPlaceService;
+    private RecommendService recomandPlaceService;
 
 
     /**
@@ -34,22 +35,12 @@ public class RecommendRestController {
             @ApiResponse(code = 500, message = "서버 에러")
     })
     @GetMapping("/place")
-    public SearchResponseDTO searchPlace(@RequestParam
-                                         @ApiParam(
-                                                 name = "추천 받을 키워드 카테고리",
-                                                 type = "String",
-                                                 value = "",
-                                                 example = "",
-                                                 required = true)
-                                                 String category,
-                                         @ApiParam(
-                                                 name = "보여줄 갯수",
-                                                 type = "Integer",
-                                                 example = "10")
-                                                 Integer disCnt
+    public KeywordRecommendResponseDTO searchPlace(
+                                         @ApiParam(name = "페이징 정보")
+                                                 Pageable pageable
                                          ) {
 
-        return recomandPlaceService.recomandSearchKeyword(category,disCnt);
+        return recomandPlaceService.recomandSearchKeyword(pageable);
     }
 
 }

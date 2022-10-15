@@ -58,7 +58,7 @@ public class SearchPlaceLogServiceImpl implements SearchPlaceLogService {
             logList.add(new SearchLogDTO.Builder(logEntity.getKeyword(), logEntity.getOs())
                     .seq(logEntity.getSeq())
                     .macAdd(logEntity.getMacAdd())
-                    .createdAd(logEntity.getCreatedAt())
+                    .createdAt(logEntity.getCreatedAt())
                     .build());
         }
 
@@ -79,7 +79,7 @@ public class SearchPlaceLogServiceImpl implements SearchPlaceLogService {
     @Transactional
     public SearchResponseDTO putLog(SearchLogDTO searchResInfo) {
 
-        searchLogRepository.save(new SearchLog(searchResInfo.getMacAdd(), searchResInfo.getOs(), searchResInfo.getKeyword(), searchResInfo.getCreatedAd()));
+        searchLogRepository.save(new SearchLog(searchResInfo.getMacAdd(), searchResInfo.getOs(), searchResInfo.getKeyword(), searchResInfo.getCreatedAt()));
 
         return new SearchResponseDTO.Builder(ResponseCode.SEARCH_INFO_UPDATE_SUCCESS.getErrorCode(), ResponseCode.SEARCH_INFO_UPDATE_SUCCESS.getMessage())
                 .keyword(searchResInfo.getKeyword())

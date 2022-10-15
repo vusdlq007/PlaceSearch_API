@@ -2,6 +2,8 @@ package com.api.placesearch.api.repo;
 
 
 import com.api.placesearch.api.entity.Place;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -13,7 +15,7 @@ public interface SearchResultRepository extends JpaRepository<Place, String> {  
 
     Optional<Place> findByKeyword(String keyword);
 
-
+    Page<Place> findByOrderByViewsDesc(Pageable pageable);
 
 //    List<Place> findByName(String name);
 

@@ -40,7 +40,7 @@ public class SearchLogging {
                     // 임시 구현. 추후 정보 넘겨받으면 셋팅.
                     SearchLogDTO searchLog = new SearchLogDTO.Builder(response.getKeyword(),"window10")
                             .macAdd("ACB-DDS-123-vvfd")
-                            .createdAd(LocalDateTime.now())
+                            .createdAt(LocalDateTime.now())
                             .build();
 
 

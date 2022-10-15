@@ -26,7 +26,10 @@ public enum ResponseCode {
     SEARCH_LOG_FAIL("INTER SERVER ERROR",500,"키워드 정보 조회에 실패하였습니다. 키워드 정보가 존재하지 않습니다."),
     SEARCH_LOG_FAIL_DB_ERROR("DB ERROR",520,"키워드 정보 조회에 실패하였습니다. DB 시스템 관리자에게 문의하여 주세요."),
     RECOMAND_SEARCH_SUCCESS("SUCCESS",200,"추천 장소 검색 키워드 조회에 성공하였습니다."),
-    RECOMAND_SEARCH_FAIL("INTER SERVER ERROR",510,"추천 장소 검색 키워드 조회에 실패하였습니다.");
+    RECOMAND_SEARCH_FAIL("INTER SERVER ERROR",510,"추천 장소 검색 키워드 조회에 실패하였습니다."),
+    RECOMAND_SEARCH_DB_FAIL("DB ERROR",520,"추천 장소 검색 키워드 조회에 실패하였습니다. DB 시스템 관리자에게 문의하여 주세요."),
+    RECOMAND_SEARCH_ILLEGAL_ARG_FAIL("INTER SERVER ERROR",500,"추천 장소 검색 키워드 조회에 실패하였습니다. 요청한 파라미터를 확인해주세요."),
+    RECOMAND_SEARCH_NULL_FAIL("INTER SERVER NULL ERROR",600,"추천 장소 검색 키워드 추천 결과가 없습니다. 추천데이터가 더 쌓인 후 확인해주세요.");
 
 
 

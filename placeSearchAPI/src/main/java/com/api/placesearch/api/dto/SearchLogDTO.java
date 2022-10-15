@@ -22,7 +22,7 @@ public class SearchLogDTO {
 
 
     @ApiModelProperty(value = "로그 생성 시간")
-    private LocalDateTime createdAd;
+    private LocalDateTime createdAt;
 
     public static class Builder {
 
@@ -30,7 +30,7 @@ public class SearchLogDTO {
         private String macAdd;
         private String os;
         private String keyword;
-        private LocalDateTime createdAd;
+        private LocalDateTime createdAt;
 
 
         public Builder(String keyword, String os) {
@@ -50,8 +50,8 @@ public class SearchLogDTO {
             return this;
         }
 
-        public Builder createdAd(LocalDateTime createdAd) {
-            this.createdAd = createdAd;
+        public Builder createdAt(LocalDateTime createdAt) {
+            this.createdAt = createdAt;
 
             return this;
         }
@@ -67,7 +67,7 @@ public class SearchLogDTO {
         os = builder.os;
         macAdd = builder.macAdd;
         keyword = builder.keyword;
-        createdAd = builder.createdAd;
+        createdAt = builder.createdAt;
     }
 
 

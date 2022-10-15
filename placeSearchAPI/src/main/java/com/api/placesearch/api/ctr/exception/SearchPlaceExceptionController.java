@@ -32,7 +32,6 @@ public class SearchPlaceExceptionController {
     protected ResponseEntity<?> handleSearchPlaceException(Exception e) {
         final SearchResponseDTO errorResponse = new SearchResponseDTO.Builder(ResponseCode.PLACE_SEARCH_FAIL.getErrorCode(), ResponseCode.PLACE_SEARCH_FAIL.getMessage()).build();
 
-        e.printStackTrace();    //임시
         return ResponseEntity.status(ResponseCode.PLACE_SEARCH_FAIL.getErrorCode()).body(errorResponse);
     }
 
@@ -43,7 +42,6 @@ public class SearchPlaceExceptionController {
     protected ResponseEntity<?> handleSearchPlaceIllegalArgException(Exception e) {
         final SearchResponseDTO errorResponse = new SearchResponseDTO.Builder(ResponseCode.PLACE_SEARCH_ILLEGAL_ARG_FAIL.getErrorCode(), ResponseCode.PLACE_SEARCH_ILLEGAL_ARG_FAIL.getMessage()).build();
 
-        e.printStackTrace();    //임시
         return ResponseEntity.status(ResponseCode.PLACE_SEARCH_ILLEGAL_ARG_FAIL.getErrorCode()).body(errorResponse);
     }
 
@@ -51,10 +49,10 @@ public class SearchPlaceExceptionController {
             NullPointerException.class
     })
     protected ResponseEntity<?> handleSearchPlaceNullPointException(Exception e) {
-        final SearchResponseDTO errorResponse = new SearchResponseDTO.Builder(ResponseCode.PLACE_SEARCH_ILLEGAL_ARG_FAIL.getErrorCode(), ResponseCode.PLACE_SEARCH_ILLEGAL_ARG_FAIL.getMessage()).build();
+        final SearchResponseDTO errorResponse = new SearchResponseDTO.Builder(ResponseCode.PLACE_SEARCH_NULL_FAIL.getErrorCode(), ResponseCode.PLACE_SEARCH_NULL_FAIL.getMessage()).build();
 
-        e.printStackTrace();    //임시
-        return ResponseEntity.status(ResponseCode.PLACE_SEARCH_ILLEGAL_ARG_FAIL.getErrorCode()).body(errorResponse);
+
+        return ResponseEntity.status(ResponseCode.PLACE_SEARCH_NULL_FAIL.getErrorCode()).body(errorResponse);
     }
 
 
