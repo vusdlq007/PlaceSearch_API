@@ -124,4 +124,4 @@ curl -X GET "http://localhost:9802/v1/api/place?keyword=카카오뱅크&size=5&p
 -keyword,size,page 입력했을때:
  curl -X GET "http://localhost:9802/v1/api/place/log?keyword=제주도&size=5&page=0"
  
-혹시 파일이 보이지 않거나 내용에 이해가 가지않는 부분이나 테스트방식간 에러가  있다면 핸드폰이나 이메일로 연락부탁리겠습니다!
+
