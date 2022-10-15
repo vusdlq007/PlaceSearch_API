@@ -105,24 +105,43 @@
 
 
 **1)장소 검색 API** 
--Keyword만 입력했을때:  curl -X GET "http://localhost:9802/v1/api/place?keyword=카카오뱅크"
--Keyword,size만 입력했을때:curl -X GET "http://localhost:9802/v1/api/place?keyword=카카오뱅크&size=5"
+
+
+-Keyword만 입력했을때:
+  curl -X GET "http://localhost:9802/v1/api/place?keyword=카카오뱅크"
+
+
+-Keyword,size만 입력했을때:
+ curl -X GET "http://localhost:9802/v1/api/place?keyword=카카오뱅크&size=5"
+
+
 -Keyword,size,page 입력했을때:
 curl -X GET "http://localhost:9802/v1/api/place?keyword=카카오뱅크&size=5&page=1"
 
 **2)추천 키워드 목록 조회 API**
+
 -param이 없이 호출했을때:
  curl -X GET "http://localhost:9802/v1/api/recomand/place"
+ 
+ 
 -size만 입력했을때:
  curl -X GET "http://localhost:9802/v1/api/recomand/place?size=5"
+ 
+ 
 -size,page 입력했을때:
  curl -X GET "http://localhost:9802/v1/api/recomand/place?size=5&page=1"
 
 **3)키워드 검색로그 조회 API**
+
+
  -keyword만 입력했을때:
  curl -X GET "http://localhost:9802/v1/api/place/log?keyword=제주도"
+ 
+ 
 -keyword,size만 입력했을때:
  curl -X GET "http://localhost:9802/v1/api/place/log?keyword=제주도&size=5"
+ 
+ 
 -keyword,size,page 입력했을때:
  curl -X GET "http://localhost:9802/v1/api/place/log?keyword=제주도&size=5&page=0"
  
