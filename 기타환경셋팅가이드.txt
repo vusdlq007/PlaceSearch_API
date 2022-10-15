@@ -1,0 +1,21 @@
+[docker container 파일 압축해제]
+1. 먼저 docker_containner_export.zip 파일을 unzip합니다.
+
+2. 안에 존재하는 각각의 .tar 파일(도커이미지)들을 docker에 아래명령어를 통하여 import해줍니다.
+*명령어 : docker load -i <tar파일명>
+
+3. 아래 명령어를 통해 mariaDB 컨테이너를 실행시켜줍니다.
+*명령어 : docker run --name mariadb-10.9.3 -d -p 13306:13306 --restart=always -e MYSQL_ROOT_PASSWORD=1q2w3e4r1! mariadb
+
+4. 아래 명령어를 통해 redis-server 컨테이너를 실행시켜줍니다.
+*명령어 : docker run --name redis-server-7.0.5 -d -p 6379:6379 redis
+
+
+-----------------------------------------------------------
+[DB에 기초 스키마 및 기초 테이블데이터 삽입]
+1. DB관련파일 폴더에 아래 sql들을 순서대로 실행합니다.
+ a) 기초_테이블생성.sql
+ b) 기초데이터_T_PLACE_SEARCH_INFO.sql
+ c) 기초데이터_T_SEARCH_LOG.sql
+
+*위 작업은 어플리케이션 구동에 있어 필수작업으로 선행부탁드리겠습니다!
