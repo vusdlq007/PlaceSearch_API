@@ -91,7 +91,7 @@
 * * *
 ####[첨부 파일 목록 및 설명]
 1. resources/DB관련파일 : 테스트시 MariaDB에 넣을 기본 스키마 및 기초데이터 .sql 파일이다.
-2. 개발간 사용한 mariadb, redis 도커 이미지 첨부. (해당이미지는 크기관계로 이메일로 첨부)
+2. 개발간 사용한 mariadb, redis 도커 이미지 첨부. (해당이미지는 크기관계로 구글드라이브로 제출문서에 링크첨부)
 3. Swagger 접속 정보
 - http://localhost:9802/swagger-ui.html#
 
