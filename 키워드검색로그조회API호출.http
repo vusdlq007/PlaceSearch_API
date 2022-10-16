@@ -1,0 +1,25 @@
+GET http://localhost:9802/v1/api/place/log?keyword=제주도
+Accept: application/json
+
+<> 2022-10-16T210444.200.json
+<> 2022-10-16T210330.200.json
+<> 2022-10-16T202144.200.json
+
+
+
+### Keyword,size만 입력했을때
+GET http://localhost:9802/v1/api/place/log?keyword=제주도&size=5
+Accept: application/json
+
+<> 2022-10-16T210455.200.json
+<> 2022-10-16T210342.200.json
+<> 2022-10-16T210059.200.json
+<> 2022-10-16T210038.200.json
+
+### Keyword,size,page만 입력했을때
+GET http://localhost:9802/v1/api/place/log?keyword=제주도&size=5&page=0
+Accept: application/json
+
+<> 2022-10-16T210504.200.json
+<> 2022-10-16T210356.200.json
+<> 2022-10-16T210214.510.json
