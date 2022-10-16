@@ -103,6 +103,13 @@ Redis와 같은 In-memory db로 분산시켜 부하를 나눌수있게 고려하
 ### [테스트 방법]
 *MariaDB(localhost:13306) 기동 후 API application(localhost:9803) 기동
 
+*저장소 최상단 폴더 위치에 아래 .http 테스트 파일 추가.
+-장소검색API호출.http
+
+-추천키워드목록API호출.http
+
+-키워드검색로그조회API호출.http
+
 
 **1)장소 검색 API** 
 
