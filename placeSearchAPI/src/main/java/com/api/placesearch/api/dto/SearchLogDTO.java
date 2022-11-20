@@ -1,11 +1,12 @@
 package com.api.placesearch.api.dto;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
+import lombok.Builder;
+
 
 import java.time.LocalDateTime;
 
-@Data
+@Builder
 public class SearchLogDTO {
 
     @ApiModelProperty(value = "로그 seq")
@@ -23,52 +24,6 @@ public class SearchLogDTO {
 
     @ApiModelProperty(value = "로그 생성 시간")
     private LocalDateTime createdAt;
-
-    public static class Builder {
-
-        private Long seq;
-        private String macAdd;
-        private String os;
-        private String keyword;
-        private LocalDateTime createdAt;
-
-
-        public Builder(String keyword, String os) {
-            this.keyword = keyword;
-            this.os = os;
-        }
-
-        public Builder seq(Long seq) {
-            this.seq = seq;
-
-            return this;
-        }
-
-        public Builder macAdd(String macAdd) {
-            this.macAdd = macAdd;
-
-            return this;
-        }
-
-        public Builder createdAt(LocalDateTime createdAt) {
-            this.createdAt = createdAt;
-
-            return this;
-        }
-
-
-        public SearchLogDTO build() {
-            return new SearchLogDTO(this);
-        }
-    }
-
-    private SearchLogDTO(Builder builder) {
-        seq = builder.seq;
-        os = builder.os;
-        macAdd = builder.macAdd;
-        keyword = builder.keyword;
-        createdAt = builder.createdAt;
-    }
 
 
 }

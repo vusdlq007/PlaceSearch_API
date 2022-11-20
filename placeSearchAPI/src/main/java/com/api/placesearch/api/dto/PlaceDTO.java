@@ -1,9 +1,9 @@
 package com.api.placesearch.api.dto;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
+import lombok.Builder;
 
-@Data
+@Builder
 public class PlaceDTO {
 
     @ApiModelProperty(value = "장소명")
@@ -20,45 +20,6 @@ public class PlaceDTO {
 
     @ApiModelProperty(value = "카테고리")
     private String category;
-
-
-    public static class Builder {
-        private String placeName;
-        private String addressName;
-        private String roadAddressName;
-        private String phone;
-        private String category;
-        
-        // 필수 입력값
-        public Builder(String placeName, String addressName, String roadAddressName){
-            this.placeName = placeName;
-            this.addressName = addressName;
-            this.roadAddressName = roadAddressName;
-        }
-        
-        public Builder phone(String phone){
-            this.phone = phone;
-            
-            return this;
-        }
-        
-        public Builder category(String category){
-            this.category = category;
-
-            return this;
-        }
-        public PlaceDTO build(){
-            return new PlaceDTO(this);
-        }
-    }
-
-    private PlaceDTO(Builder builder){
-        placeName = builder.placeName;
-        addressName = builder.addressName;
-        roadAddressName = builder.roadAddressName;
-        phone = builder.phone;
-        category = builder.category;
-    }
 
 
 }
