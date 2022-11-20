@@ -38,7 +38,8 @@ public class SearchLogging {
                 try {
                     SearchResponseDTO response = (SearchResponseDTO) responseDTO;
                     // 임시 구현. 추후 정보 넘겨받으면 셋팅.
-                    SearchLogDTO searchLog = new SearchLogDTO.Builder(response.getKeyword(),"window10")
+                    SearchLogDTO searchLog = SearchLogDTO.builder()
+                            .keyword(response.getKeyword())
                             .macAdd("ACB-DDS-123-vvfd")
                             .createdAt(LocalDateTime.now())
                             .build();
