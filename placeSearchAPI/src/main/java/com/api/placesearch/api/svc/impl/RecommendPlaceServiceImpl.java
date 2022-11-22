@@ -32,12 +32,13 @@ public class RecommendPlaceServiceImpl implements RecommendService {
     SearchResultRepository searchResultRepository;
 
 
-    public RecommendPlaceServiceImpl(SearchResultRepository searchResultRepository){
+    public RecommendPlaceServiceImpl(SearchResultRepository searchResultRepository) {
         this.searchResultRepository = searchResultRepository;
     }
 
     /**
      * 가장 많이 검색된 순서로 상위 키워드 리턴.
+     *
      * @param pageable
      * @return
      */
@@ -50,9 +51,12 @@ public class RecommendPlaceServiceImpl implements RecommendService {
         List<RecommendKeywordDTO> keywordList = new ArrayList<>();
 
         for (Place keywordEntity : keywordInfoArr) {
-            keywordList.add(new RecommendKeywordDTO.Builder(keywordEntity.getKeyword(), keywordEntity.getViews())
+            keywordList.add(RecommendKeywordDTO.builder()
+                    .keyword(keywordEntity.getKeyword())
+                    .totalViews(keywordEntity.getViews())
                     .createdAt(keywordEntity.getCreatedAt())
-                    .build());
+                    .build()
+            );
         }
 
         return new KeywordRecommendResponseDTO.Builder(ResponseCode.RECOMAND_SEARCH_SUCCESS.getErrorCode(), ResponseCode.RECOMAND_SEARCH_SUCCESS.getMessage())
